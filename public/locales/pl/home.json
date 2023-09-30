@@ -3,6 +3,10 @@
     "studyLevelTitle": "Poziom studiów",
     "studyLevels": ["test 1", "test 2"],
     "studyModeTitle": "Tryb studiów",
-    "studyModes": ["test 1", "test 2"]
+    "studyModes": ["test 1", "test 2"],
+    "paymentsTitle": "Opłaty",
+    "minimumPoints": "Minimalna liczba punktów",
+    "typeMinimumPoints": "Wpisz minimalną liczbę punktów",
+    "degreeCourseTitle": "Kieruneki"
   }
 }

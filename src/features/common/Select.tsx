@@ -6,13 +6,14 @@ import { TriangleSvg } from "@/assets/svgs/Triangle.svg";
 
 const select = cva(
   [
-    "rounded-md flex items-center p-2 relative outline-none w-full cursor-pointer",
+    "rounded-md flex items-center p-2 relative outline-none w-full text-darkGray font-light cursor-pointer",
   ],
   {
     variants: {
       intent: {
         gray: ["bg-gray"],
         white: ["bg-white"],
+        light: ["bg-light"],
       },
       border: {
         primary: ["border-2", "border-primary"],
@@ -28,7 +29,7 @@ const select = cva(
         secondary: ["focus:border-2", "focus:border-secondary"],
       },
     },
-    defaultVariants: { intent: "gray", outline: "primary" },
+    defaultVariants: { intent: "light", outline: "primary" },
   },
 );
 export interface ISelectProps

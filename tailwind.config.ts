@@ -22,9 +22,9 @@ const config: Config = {
       colors: {
         primary: "#2667FF",
         secondary: "#F52E8E",
-        light: "#F9FAFE",
-        gray: "#F3F2F2",
-        darkGray: "#C7C7C7",
+        light: "#F3F5FA",
+        gray: "#BCBCBC",
+        darkGray: "#78797E",
         white: "#FFFFFF",
         black: "#000000",
         success: "#00C48C",

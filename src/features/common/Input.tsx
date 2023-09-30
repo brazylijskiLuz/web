@@ -4,28 +4,38 @@ import ErrorComponent from "@/features/common/ErrorComponent";
 import searchSvg from "@/assets/svgs/search.svg";
 import Image from "next/image";
 
-const input = cva(["rounded-md", "p-2", "outline-none", "w-full"], {
-  variants: {
-    intent: {
-      gray: ["bg-gray"],
-      white: ["bg-white"],
+const input = cva(
+  [
+    "rounded-md",
+    "p-2",
+    "outline-none",
+    "w-full",
+    "text-gray",
+    "placeholder:text-darkGray placeholder:font-light",
+  ],
+  {
+    variants: {
+      intent: {
+        white: ["bg-white"],
+        light: ["bg-light"],
+      },
+      border: {
+        primary: ["border-2", "border-primary"],
+        secondary: ["border-2", "border-secondary"],
+        gray: ["border-2", "border-gray"],
+        darkGray: ["border-2", "border-darkGray"],
+        success: ["border-2", "border-success"],
+        danger: ["border-2", "border-danger"],
+      },
+      outline: {
+        none: ["focus:border-0"],
+        primary: ["focus:border-2", "focus:border-primary"],
+        secondary: ["focus:border-2", "focus:border-secondary"],
+      },
     },
-    border: {
-      primary: ["border-2", "border-primary"],
-      secondary: ["border-2", "border-secondary"],
-      gray: ["border-2", "border-gray"],
-      darkGray: ["border-2", "border-darkGray"],
-      success: ["border-2", "border-success"],
-      danger: ["border-2", "border-danger"],
-    },
-    outline: {
-      none: ["focus:border-0"],
-      primary: ["focus:border-2", "focus:border-primary"],
-      secondary: ["focus:border-2", "focus:border-secondary"],
-    },
+    defaultVariants: { intent: "light", outline: "primary" },
   },
-  defaultVariants: { intent: "gray", outline: "primary" },
-});
+);
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "value">,
@@ -35,6 +45,7 @@ export interface InputProps
   defaultValue?: string;
   error?: string;
   showSearchIcon?: boolean;
+  containerStyles?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -51,6 +62,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       defaultValue,
       error,
       showSearchIcon,
+      containerStyles,
       ...props
     },
     ref,
@@ -78,14 +90,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className={"relative"}>
+      <div className={`${containerStyles} relative`}>
         <div className={"flex items-center"}>
           <input
             type={type === "number" ? "text" : type}
             value={value}
             onChange={handleChangeVal}
             placeholder={placeholder}
-            className={input({ intent, border, outline, className })}
+            className={input({ className, intent, border, outline })}
             ref={(el) => {
               inputRef.current = el;
               if (typeof ref === "function") {

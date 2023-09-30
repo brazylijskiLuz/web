@@ -48,12 +48,12 @@ const HomeScreen = () => {
         )}
       />
 
-      <div className="mt-7 flex h-full">
-        <div className="h-full w-1/2 px-7">
+      <div className="flex h-full flex-col-reverse px-2 sm:px-14 sm:pt-7 md:flex-row">
+        <div className="h-full w-full sm:w-[40%]">
           <FiltersContainer />
           <SchoolList />
         </div>
-        <div className="h-full w-1/2 pb-7 pr-4">
+        <div className="right-0 mt-4 h-40 w-full pb-7 sm:fixed sm:ml-7 sm:mt-0 sm:h-[calc(100vh-11.75rem)] sm:w-[calc(60%-1.75rem)] sm:pr-14">
           <div className="h-full w-full overflow-hidden rounded-md">
             <Map />
           </div>
