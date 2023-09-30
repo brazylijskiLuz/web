@@ -114,17 +114,16 @@ const Map = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <MarkerClusterGroup iconCreateFunction={createClusterIcon}>
+          <CustomMarker position={[50.046286, 19.918216]} />
+          <CustomMarker position={[50.096286, 19.928616]} />
+          <CustomMarker position={[50.066286, 19.948616]} />
+        </MarkerClusterGroup>
 
         <ZoomControls />
       </MapContainer>
     </div>
   );
 };
-
-//        <MarkerClusterGroup iconCreateFunction={createClusterIcon}>
-//        <CustomMarker position={[50.046286, 19.918216]} />
-//      <CustomMarker position={[50.096286, 19.928616]} />
-//    <CustomMarker position={[50.066286, 19.948616]} />
-//</MarkerClusterGroup>
 
 export default Map;

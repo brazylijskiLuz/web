@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Input from "@/features/common/Input";
 import { Select } from "@/features/common/Select";
 import { useT } from "@/utils/hooks/useTranslation";
+import AccessibilitySvg from "@/assets/svgs/Accessibiliy.svg";
+import AccessibilityModal from "@/features/common/AccessibilityModal";
+import { useOutsideClick } from "@/utils/hooks/useOutsideClick";
 
 interface ISearchInputsProps {
   onChangeInputs: (val: {
@@ -14,9 +17,17 @@ interface ISearchInputsProps {
 const SearchInputs = ({ onChangeInputs }: ISearchInputsProps) => {
   const { t } = useT();
 
+  const container = useRef(null);
+
+  const [showModal, setShowModal] = useState(false);
+
   const [query, setQuery] = useState("");
   const [radius, setRadius] = useState("5");
   const [city, setCity] = useState("");
+
+  useOutsideClick(container, () => {
+    setShowModal(false);
+  });
 
   useEffect(() => {
     onChangeInputs({
@@ -25,8 +36,10 @@ const SearchInputs = ({ onChangeInputs }: ISearchInputsProps) => {
       city: city,
     });
   }, [query, radius, city]);
+
   return (
     <div
+      ref={container}
       className={
         "fixed top-24 z-50 flex h-24 w-full flex-col justify-between gap-2 border-b-2 border-light bg-white px-2 py-2 text-sm xs:h-16 xs:flex-row xs:items-center xs:gap-4 xs:px-4 xs:text-base sm:px-14"
       }
@@ -50,6 +63,7 @@ const SearchInputs = ({ onChangeInputs }: ISearchInputsProps) => {
           onSelect={(val) => setRadius(val.trim().split(t("km"))[0])}
         />
       </div>
+      {showModal && <AccessibilityModal />}
     </div>
   );
 };

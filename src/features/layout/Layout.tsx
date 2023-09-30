@@ -8,7 +8,7 @@ import { clsx } from "clsx";
 
 interface ILayoutProps extends PropsWithChildren {}
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const Layout = ({ children }: ILayoutProps) => {
   const { t } = useT();
 
