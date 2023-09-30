@@ -5,9 +5,9 @@ export default function Document() {
   const fontSize = useA11yStore((state) => state.fontSize);
 
   return (
-    <Html style={{ fontSize: fontSize }} lang="en">
+    <Html lang="en">
       <Head />
-      <body>
+      <body style={{ fontSize: 40 }}>
         <Main />
         <NextScript />
       </body>

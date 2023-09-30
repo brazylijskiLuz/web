@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { forwardRef, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import ErrorComponent from "@/features/common/ErrorComponent";
 import searchSvg from "@/assets/svgs/search.svg";
 import Image from "next/image";
@@ -38,7 +38,7 @@ const input = cva(
 );
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "value">,
+  extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof input> {
   handleChange?: (e: string) => void;
   placeholder?: string;
@@ -88,6 +88,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       setValue(result);
       onChange && onChange(event);
     };
+
+    useEffect(() => {
+      props.value && setValue(props.value as string);
+    }, [props.value]);
 
     return (
       <div className={`${containerStyles} relative`}>
