@@ -1,11 +1,13 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useRef, useState } from "react";
 import ErrorComponent from "@/features/common/ErrorComponent";
+import searchSvg from "@/assets/svgs/search.svg";
+import Image from "next/image";
 
 const input = cva(["rounded-md", "p-2", "outline-none", "w-full"], {
   variants: {
     intent: {
-      light: ["bg-light"],
+      gray: ["bg-gray"],
       white: ["bg-white"],
     },
     border: {
@@ -22,7 +24,7 @@ const input = cva(["rounded-md", "p-2", "outline-none", "w-full"], {
       secondary: ["focus:border-2", "focus:border-secondary"],
     },
   },
-  defaultVariants: { intent: "light", outline: "primary" },
+  defaultVariants: { intent: "gray", outline: "primary" },
 });
 
 export interface InputProps
@@ -32,6 +34,7 @@ export interface InputProps
   placeholder?: string;
   defaultValue?: string;
   error?: string;
+  showSearchIcon?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -47,10 +50,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       defaultValue,
       error,
+      showSearchIcon,
       ...props
     },
     ref,
   ) => {
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
     const [value, setValue] = useState(defaultValue || "");
 
     const handleChangeVal = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,15 +79,30 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className={"relative"}>
-        <input
-          type={type === "number" ? "text" : type}
-          value={value}
-          onChange={handleChangeVal}
-          placeholder={placeholder}
-          className={input({ intent, border, outline, className })}
-          ref={ref}
-          {...props}
-        />
+        <div className={"flex items-center"}>
+          <input
+            type={type === "number" ? "text" : type}
+            value={value}
+            onChange={handleChangeVal}
+            placeholder={placeholder}
+            className={input({ intent, border, outline, className })}
+            ref={(el) => {
+              inputRef.current = el;
+              if (typeof ref === "function") {
+                ref(el);
+              }
+            }}
+            {...props}
+          />
+          {showSearchIcon && (
+            <Image
+              onClick={() => inputRef?.current?.focus()}
+              src={searchSvg}
+              alt={"Search"}
+              className={"absolute right-3"}
+            />
+          )}
+        </div>
         {error && <ErrorComponent msg={error} />}
       </div>
     );
