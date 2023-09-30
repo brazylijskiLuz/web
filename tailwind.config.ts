@@ -1,3 +1,4 @@
+import { useA11yStore } from "@/stores/a11y.store";
 import type { Config } from "tailwindcss";
 
 const defaultTheme = require("tailwindcss/defaultTheme");
