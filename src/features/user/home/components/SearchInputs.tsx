@@ -28,14 +28,23 @@ const SearchInputs = ({ onChangeInputs }: ISearchInputsProps) => {
   return (
     <div
       className={
-        "flex h-16 w-full items-center justify-between border-b-2 border-light bg-white px-4 text-sm xs:px-14 xs:text-base"
+        "fixed top-24 z-50 flex h-24 w-full flex-col justify-between gap-2 border-b-2 border-light bg-white px-2 py-2 text-sm xs:h-16 xs:flex-row xs:items-center xs:gap-4 xs:px-4 xs:text-base sm:px-14"
       }
     >
-      <Input showSearchIcon onChange={(e) => setQuery(e.target.value)} />
-      <div className={"flex gap-4"}>
-        <Input onChange={(e) => setCity(e.target.value)} />
+      <Input
+        showSearchIcon
+        onChange={(e) => setQuery(e.target.value)}
+        className={"xs:w-60 md:w-80"}
+        placeholder={`${t("home:search")}...`}
+      />
+      <div className={"flex w-full gap-4 xs:w-auto"}>
+        <Input
+          containerStyles={"w-full md:w-auto"}
+          onChange={(e) => setCity(e.target.value)}
+          placeholder={t("home:enterCity")}
+        />
         <Select
-          className={"w-20"}
+          className={"!max-w-[5rem]"}
           options={[`5 ${t("km")}`, `10 ${t("km")}`]}
           defaultValue={`5 ${t("km")}`}
           onSelect={(val) => setRadius(val.trim().split(t("km"))[0])}

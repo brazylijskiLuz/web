@@ -8,5 +8,9 @@
     "minimumPoints": "Minimalna liczba punktów",
     "typeMinimumPoints": "Wpisz minimalną liczbę punktów",
     "degreeCourseTitle": "Kieruneki"
-  }
+  },
+  "assessSubject": "Przedmioty oceniane przy rekrutacji",
+  "degreeCourse": "Kierunek",
+  "search": "Wyszukaj",
+  "enterCity": "Wpisz miasto"
 }

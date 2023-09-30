@@ -6,7 +6,7 @@ import { TriangleSvg } from "@/assets/svgs/Triangle.svg";
 
 const select = cva(
   [
-    "rounded-md flex items-center p-2 relative outline-none w-full text-darkGray font-light cursor-pointer",
+    "rounded-md min-w-[5rem] flex items-center py-2 px-3 relative outline-none w-full text-darkGray font-light cursor-pointer",
   ],
   {
     variants: {

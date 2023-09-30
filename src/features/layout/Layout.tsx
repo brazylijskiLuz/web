@@ -15,7 +15,7 @@ const Layout = ({ children }: ILayoutProps) => {
   const { asPath } = useRouter();
 
   const menuList = [
-    { name: t("scholList"), href: "/" },
+    { name: t("schoolList"), href: "/" },
     { name: t("contact"), href: "/contact" },
   ];
   console.log(asPath);
@@ -23,7 +23,7 @@ const Layout = ({ children }: ILayoutProps) => {
   return (
     <>
       <header
-        className={`fixed left-0 top-0 flex h-24 w-full items-center justify-between border-b-2 border-light bg-white px-4 text-sm xs:px-14 xs:text-base ${inter.className}`}
+        className={`fixed left-0 top-0 z-50 flex h-24 w-full items-center justify-between border-b-2 border-light bg-white px-4 text-sm xs:px-14 xs:text-base ${inter.className}`}
       >
         <LogoSvg />
         <nav className={"flex gap-4"}>

@@ -7,7 +7,8 @@ import Image from "next/image";
 const input = cva(
   [
     "rounded-md",
-    "p-2",
+    "py-2",
+    "px-3",
     "outline-none",
     "w-full",
     "text-gray",

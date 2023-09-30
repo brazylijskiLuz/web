@@ -1,7 +1,8 @@
 {
-  "scholList": "Lista szkół",
+  "schoolList": "Lista szkół",
   "contact": "Kontakt",
   "km": "km",
   "min": "min",
-  "max": "max"
+  "max": "max",
+  "ul": "ul."
 }

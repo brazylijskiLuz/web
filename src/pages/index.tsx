@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>{t("pages:searchSchol")}</title>
+        <title>{t("pages:searchSchool")}</title>
       </Head>
       <HomeScreen />
     </>

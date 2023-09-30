@@ -29,6 +29,8 @@ const config: Config = {
         black: "#000000",
         success: "#00C48C",
         danger: "#FF3D71",
+        yellow: "#EDDE57",
+        lightYellow: "#FDFCEE",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
