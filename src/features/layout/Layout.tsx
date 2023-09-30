@@ -23,7 +23,7 @@ const Layout = ({ children }: ILayoutProps) => {
   return (
     <>
       <header
-        className={`xs:px-14 xs:text-base fixed left-0 top-0 flex h-20 w-full items-center justify-between bg-white px-4 text-sm ${inter.className}`}
+        className={`fixed left-0 top-0 flex h-24 w-full items-center justify-between border-b-2 border-light bg-white px-4 text-sm xs:px-14 xs:text-base ${inter.className}`}
       >
         <LogoSvg />
         <nav className={"flex gap-4"}>
@@ -41,7 +41,9 @@ const Layout = ({ children }: ILayoutProps) => {
           ))}
         </nav>
       </header>
-      <main className={`mx-auto bg-white ${inter.className}`}>{children}</main>
+      <main className={`mx-auto mt-24 w-full bg-white ${inter.className}`}>
+        {children}
+      </main>
     </>
   );
 };
