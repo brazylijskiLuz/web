@@ -4,6 +4,10 @@ import { useT } from "@/utils/hooks/useTranslation";
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import dynamic from 'next/dynamic';
+const Map = dynamic(() => import('@/features/user/home/components/Map'), {
+  ssr: false,
+});
 
 const HomeScreen = () => {
   const { t } = useT();
@@ -39,6 +43,9 @@ const HomeScreen = () => {
           <SearchInputs onChangeInputs={onChange} />
         )}
       />
+       <div className="w-full w-full">
+        <Map />
+      </div>
     </div>
   );
 };

@@ -30,3 +30,17 @@ html, body {
   box-sizing: border-box;
   height: 100%;
 }
+
+.leaflet-popup-tip {
+    display: none;
+}
+
+.leaflet-popup-content-wrapper {
+    position: absolute;
+      background: transparent !important;
+      box-shadow: none !important;
+}
+
+a.leaflet-popup-close-button {
+    display: none;
+}
