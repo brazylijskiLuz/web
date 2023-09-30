@@ -86,7 +86,7 @@ export const Select = ({
       }}
       {...props}
     >
-      <p className={`font-medium`}>{selectedOption || defaultValue}</p>
+      <p>{selectedOption || defaultValue}</p>
       <div
         className={`${
           isOpen ? "rotate-180" : "rotate-0"

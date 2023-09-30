@@ -1,0 +1,8 @@
+{
+  "filters": {
+    "studyLevelTitle": "Poziom studiów",
+    "studyLevels": ["test 1", "test 2"],
+    "studyModeTitle": "Tryb studiów",
+    "studyModes": ["test 1", "test 2"]
+  }
+}

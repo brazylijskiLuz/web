@@ -4,8 +4,12 @@ import { useT } from "@/utils/hooks/useTranslation";
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import dynamic from 'next/dynamic';
-const Map = dynamic(() => import('@/features/user/home/components/Map'), {
+import dynamic from "next/dynamic";
+import Filters from "../components/FiltersContainer";
+import SchoolList from "../components/SchoolList";
+import FiltersContainer from "../components/FiltersContainer";
+
+const Map = dynamic(() => import("@/features/user/home/components/Map"), {
   ssr: false,
 });
 
@@ -35,7 +39,7 @@ const HomeScreen = () => {
   console.log(watch());
 
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <Controller
         name={"query"}
         control={control}
@@ -43,8 +47,17 @@ const HomeScreen = () => {
           <SearchInputs onChangeInputs={onChange} />
         )}
       />
-       <div className="w-full w-full">
-        <Map />
+
+      <div className="mt-7 flex h-full">
+        <div className="h-full w-1/2 px-7">
+          <FiltersContainer />
+          <SchoolList />
+        </div>
+        <div className="h-full w-1/2 pb-7 pr-4">
+          <div className="h-full w-full overflow-hidden rounded-md">
+            <Map />
+          </div>
+        </div>
       </div>
     </div>
   );
