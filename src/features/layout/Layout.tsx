@@ -41,7 +41,7 @@ const Layout = ({ children }: ILayoutProps) => {
           ))}
         </nav>
       </header>
-      <main className={`mx-auto bg-white ${inter.className}`}>{children}</main>
+      <main className={`mx-auto bg-white min-h-screen  ${inter.className}`}>{children}</main>
     </>
   );
 };

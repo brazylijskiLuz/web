@@ -1,22 +1,10 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useT } from "@/utils/hooks/useTranslation";
+import HomeScreen from "@/features/user/home/screens/Home.screen";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { t } = useT();
-
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center p-24 ${inter.className}`}
-    >
-      <p>web</p>
-      <p>{t("test")}</p>
-    </main>
-  );
+  return <HomeScreen/> ;
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
