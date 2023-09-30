@@ -3,8 +3,9 @@ import type { AppProps } from "next/app";
 import { useState } from "react";
 import { QueryClient } from "@tanstack/query-core";
 import { Hydrate, QueryClientProvider } from "@tanstack/react-query";
+import { appWithTranslation } from "next-i18next";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
@@ -15,3 +16,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </QueryClientProvider>
   );
 }
+
+export default appWithTranslation(App);
