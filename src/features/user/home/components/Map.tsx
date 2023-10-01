@@ -56,7 +56,9 @@ const SchoolInfo = ({ id }: { id: string }) => {
         <h1 className="text-xl font-bold">
           {data?.data && data?.data.institutionName}
         </h1>
-        <p className="text-sm">{data?.data && data?.data.description}</p>
+        <h1 className="text-xl font-bold">{data?.data?.institutionName}</h1>
+        {/*@ts-ignore TODO: check if work*/}
+        <p className="text-sm">{data?.data?.description}</p>
       </div>
       <Button className='m-[10px]' onClick={() => push(id)}>{t('seeMore')}</Button>
     </div>
