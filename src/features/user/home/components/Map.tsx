@@ -16,14 +16,14 @@ interface MarkerProps {
 }
 
 const universityIcon = icon({
-  iconUrl: "/UniversityIcon.png",
+  iconUrl: "/images/UniversityIcon.png",
   iconSize: [32, 32],
 });
 
 const createClusterIcon = (cluster: any) => {
   return divIcon({
     html: `<div class="width: 100%">
-            <image src="/UniversityIcon.png" style="width: 32px; height: 32px;"/>
+            <image src="/images/UniversityIcon.png" style="width: 32px; height: 32px;"/>
             <p style="color: black; position: absolute; top: 0; right: 0; background: white; border-radius: 40%; padding-inline: 8px; transform: translate(10px, -10px)">
               ${cluster.getChildCount()}
             </p>
@@ -42,7 +42,7 @@ const SchoolInfo = ({ id }: { id: string }) => {
     <div className="flex translate-x-[-47px] translate-y-[-27px] flex-col rounded-lg bg-white ">
       <div className="h-[52px] w-full">
         <img
-          src="/UniversityIcon.png"
+          src="/images/images/UniversityIcon.png"
           className="absolute left-[10px] top-[10px] h-[32px] w-[32px]"
         />
       </div>

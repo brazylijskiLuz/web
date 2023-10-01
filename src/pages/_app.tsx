@@ -9,7 +9,6 @@ import { Inter } from "next/font/google";
 import { AuthProvider } from "@/features/admin/auth/AuthProvider";
 import { NextComponentType } from "next";
 import { Toaster } from "react-hot-toast";
-import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
