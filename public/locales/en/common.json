@@ -7,5 +7,9 @@
   "ul": "ul.",
   "adjustFontSize": "Adjust Font Size",
   "enableContrast": "Enable Contrast Mode",
-  "disableContrast": "Disable Contrast Mode"
+  "disableContrast": "Disable Contrast Mode",
+  "goBack": "Go Back",
+  "seeMore": "See more",
+  "enableGrayscale": "Enable gray scale",
+  "disableGrayscale": "Disable gray scale"
 }
