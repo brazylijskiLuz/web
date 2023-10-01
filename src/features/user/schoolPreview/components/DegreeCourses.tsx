@@ -27,11 +27,15 @@ export default function DegreeCourses({
           <div className={"h-14 w-2/3 animate-pulse rounded-md bg-light"} />
         </>
       ) : (
-        <div className={"flex"}>
-          {data?.map((course) => (
-            <div key={course.id} className={"flex"}>
-              <Badge intent={"light"}>{course.name}</Badge>
-            </div>
+        <div className={"flex flex-wrap"}>
+          {data?.map((course, index) => (
+            <React.Fragment key={course.id}>
+              {index < 10 && (
+                <div className={"flex"}>
+                  <Badge intent={"light"}>{course.name}</Badge>
+                </div>
+              )}
+            </React.Fragment>
           ))}
         </div>
       )}

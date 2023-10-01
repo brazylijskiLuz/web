@@ -70,12 +70,12 @@ const SchoolItem = ({ schoolData }: ISchoolItemProps) => {
       </div>
       <div
         className={
-          "relative h-auto w-full md:hidden xl:inline xl:h-auto xl:w-[30%]"
+          "relative mb-4 h-auto w-full px-12 sm:px-0 md:hidden xl:inline xl:h-auto xl:w-[30%]"
         }
       >
         {schoolData.imageUrl ? (
           <img
-            className={"h-full object-cover lg:rounded-r-xl"}
+            className={"h-auto object-cover sm:h-full lg:rounded-r-xl"}
             src={schoolData.imageUrl}
             alt={t("home:schoolPhoto")}
             // fill
