@@ -3,9 +3,11 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import PreviewScreen from "@/features/user/schoolPreview/screens/Preview.screen";
+import { useGetSchoolInfo } from "@/api/queries/school.query";
 
 const SchoolPreview = () => {
   const { t } = useT();
+
   return (
     <>
       <Head>

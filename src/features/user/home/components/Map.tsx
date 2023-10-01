@@ -9,6 +9,8 @@ import { use, useEffect } from "react";
 import { useGetLocations } from "@/api/queries/map.query";
 import { ILocation } from "@/api/requests/map.req";
 import { useGetSchoolInfo } from "@/api/queries/school.query";
+import { useT } from "@/utils/hooks/useTranslation";
+import { useRouter } from "next/router";
 
 interface MarkerProps {
   position: [number, number];
@@ -36,22 +38,29 @@ const createClusterIcon = (cluster: any) => {
 const SchoolInfo = ({ id }: { id: string }) => {
   const { data, isLoading, error } = useGetSchoolInfo(id);
 
+  const { push } = useRouter();
+
+  const {t} = useT()
+
   console.log("uhhuahwuid", data);
 
   return (
     <div className="flex translate-x-[-47px] translate-y-[-27px] flex-col rounded-lg bg-white ">
       <div className="h-[52px] w-full">
         <img
-          src="/images/images/UniversityIcon.png"
+          src="/images/UniversityIcon.png"
           className="absolute left-[10px] top-[10px] h-[32px] w-[32px]"
         />
       </div>
       <div className="p-4">
+        <h1 className="text-xl font-bold">
+          {data?.data && data?.data.institutionName}
+        </h1>
         <h1 className="text-xl font-bold">{data?.data?.institutionName}</h1>
         {/*@ts-ignore TODO: check if work*/}
         <p className="text-sm">{data?.data?.description}</p>
-        <p className="text-sm">Adolf Hitler</p>
       </div>
+      <Button className='m-[10px]' onClick={() => push(id)}>{t('seeMore')}</Button>
     </div>
   );
 };
@@ -97,7 +106,7 @@ const CustomMarker = ({ position, id }: MarkerProps) => {
   );
 };
 
-const Map = () => {
+const Map = ({singleSchool,x, y}: {singleSchool?: string, x?:string, y?: string}) => {
   const { data, isLoading, error } = useGetLocations();
 
   useEffect(() => {
@@ -118,14 +127,18 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MarkerClusterGroup iconCreateFunction={createClusterIcon}>
-          {data?.data &&
+          {!singleSchool  && data?.data ?
             data.data.map((location) => (
               <CustomMarker
                 key={location.universityId}
                 id={location.universityId}
                 position={[+location.y, +location.x]}
               />
-            ))}
+            )) : singleSchool && x && y && (<CustomMarker
+              key={singleSchool}
+              id={singleSchool}
+              position={[+y, +x]}
+            />)}
         </MarkerClusterGroup>
 
         <ZoomControls />
