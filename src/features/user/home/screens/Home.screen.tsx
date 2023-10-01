@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import SearchInputs from "@/features/user/home/components/SearchInputs";
 import { useT } from "@/utils/hooks/useTranslation";
 import { z } from "zod";
@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import Filters from "../components/FiltersContainer";
 import SchoolList from "../components/SchoolList";
 import FiltersContainer from "../components/FiltersContainer";
-import { IGetSchoolsReq } from "@/models/school.model";
+import { IGetSchoolsReq, School } from "@/models/school.model";
 import { useQuery } from "@tanstack/react-query";
 import { SchoolApi } from "@/api/requests/school.req";
 import { queryKeys } from "@/api/queries/queryKeys";
@@ -17,6 +17,31 @@ import { useGetSchools } from "@/api/queries/school.query";
 const Map = dynamic(() => import("@/features/user/home/components/Map"), {
   ssr: false,
 });
+
+function useScrollPosition() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  function handleScroll() {
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const windowScroll = document.documentElement.scrollTop;
+
+    const scrolled = (windowScroll / height) * 100;
+
+    setScrollPosition(scrolled);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
+  return scrollPosition;
+}
 
 const HomeScreen = () => {
   const { t } = useT();
@@ -30,8 +55,10 @@ const HomeScreen = () => {
     city: "",
   });
   const [page, setPage] = useState("0");
+  const [actualData, setActualData] = useState<School[]>([]);
+  const [shouldResetData, setShouldResetData] = useState(false);
 
-  const { data } = useGetSchools({
+  const { data, isLoading } = useGetSchools({
     page: page,
     city: filterData.city?.length === 0 ? undefined : filterData.city,
     maxPrice:
@@ -42,7 +69,7 @@ const HomeScreen = () => {
     types: filterData.types,
     query: filterData.query?.length === 0 ? undefined : filterData.query,
   });
-  console.log(data);
+
   const schema = z.object({
     search: z.object({
       query: z.string().optional(),
@@ -98,6 +125,7 @@ const HomeScreen = () => {
   const filters = useWatch({ control: control, name: "filters" });
 
   useEffect(() => {
+    setShouldResetData(true);
     setFilterData({
       query: watch("search.query"),
       types: watch("filters.type") as any,
@@ -107,6 +135,27 @@ const HomeScreen = () => {
       maxPrice: watch("filters.max"),
     });
   }, [search, filters]);
+
+  useEffect(() => {
+    if (data?.data) {
+      setActualData((prevData) =>
+        shouldResetData && data.data
+          ? [...data.data]
+          : data?.data
+          ? [...prevData, ...data?.data]
+          : [...prevData],
+      );
+    }
+  }, [data, shouldResetData]);
+
+  const scrollPosition = useScrollPosition();
+
+  useEffect(() => {
+    if (scrollPosition > 65) {
+      setShouldResetData(false);
+      setPage((prev) => (+prev + 1).toString());
+    }
+  }, [scrollPosition]);
 
   return (
     <div className="flex h-full flex-col">
@@ -133,7 +182,7 @@ const HomeScreen = () => {
               <FiltersContainer onChange={onChange} />
             )}
           />
-          <SchoolList schools={data?.data} />
+          <SchoolList schools={actualData} isLoading={isLoading} />
         </div>
         <div className="right-0 mt-14 h-40 w-full pb-7 md:fixed md:ml-7 md:mt-0 md:h-[calc(100vh-11.75rem)] md:w-[calc(60%-1.75rem)] md:pr-14">
           <div className="h-full w-full overflow-hidden rounded-md">

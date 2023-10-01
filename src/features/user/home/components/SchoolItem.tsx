@@ -5,6 +5,7 @@ import pinSvg from "@/assets/svgs/pin.svg";
 import { useT } from "@/utils/hooks/useTranslation";
 import Stars from "@/features/common/Stars";
 import { Badge } from "@/features/common/Badge";
+import { useRouter } from "next/router";
 
 interface ISchoolItemProps {
   schoolData: School;
@@ -13,8 +14,15 @@ interface ISchoolItemProps {
 const SchoolItem = ({ schoolData }: ISchoolItemProps) => {
   const { t } = useT();
 
+  const { push } = useRouter();
+
   return (
-    <li className={"my-10 flex flex-col rounded-xl bg-white md:flex-row"}>
+    <li
+      className={
+        "my-10 flex min-h-[8rem] cursor-pointer flex-col rounded-xl bg-white md:flex-row"
+      }
+      onClick={() => push(`/${schoolData.id}`)}
+    >
       <div className={"flex h-full w-full flex-col p-5 xl:w-[70%]"}>
         <div className={"flex w-full flex-col"}>
           <div className={"flex justify-between gap-2"}>
@@ -31,43 +39,39 @@ const SchoolItem = ({ schoolData }: ISchoolItemProps) => {
             </p>
           </div>
         </div>
-        <div className={"mt-2 flex flex-col"}>
-          <p className={"text-xs text-darkGray"}>{t("home:assessSubject")}</p>
-          <div className={"flex flex-wrap"}>
-            {schoolData.assessSubjects &&
-              schoolData.assessSubjects.map((subject) => (
-                <Badge key={subject.id} intent={"primary"}>
-                  {subject.name}
-                </Badge>
-              ))}
-          </div>
-        </div>
-        <div className={"mt-2 flex flex-col"}>
-          <p className={"text-xs text-darkGray"}>{t("home:degreeCourses")}</p>
-          <div className={"flex flex-wrap"}>
-            {schoolData.degreeCourse &&
-              schoolData.degreeCourse.map((course, index) => (
-                <>
+        {/*<div className={"mt-2 flex flex-col"}>*/}
+        {/*  <p className={"text-xs text-darkGray"}>{t("home:assessSubject")}</p>*/}
+        {/*  {schoolData.assessSubjects &&*/}
+        {/*    schoolData.assessSubjects.map((subject) => (*/}
+        {/*      <div key={subject.id} className={"flex flex-wrap"}>*/}
+        {/*        <Badge intent={"primary"}>{subject.name}</Badge>*/}
+        {/*      </div>*/}
+        {/*    ))}*/}
+        {/*</div>*/}
+        {schoolData.degreeCourse.length > 0 && (
+          <div className={"mt-2 flex flex-col"}>
+            <p className={"text-xs text-darkGray"}>{t("home:degreeCourses")}</p>
+            <div className={"flex flex-wrap"}>
+              {schoolData.degreeCourse.map((course, index) => (
+                <React.Fragment key={course.id}>
                   {index < 3 && (
-                    <Badge key={course.id} intent={"secondary"}>
-                      {course.name}
-                    </Badge>
+                    <Badge intent={"secondary"}>{course.name}</Badge>
                   )}
                   {index === 3 && (
                     <Badge key={course.id} intent={"secondary"}>
                       ...
                     </Badge>
                   )}
-                </>
+                </React.Fragment>
               ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div
         className={
           "relative h-auto w-full md:hidden xl:inline xl:h-auto xl:w-[30%]"
         }
-        // className={"flex h-full w-[30%]"}
       >
         {schoolData.imageUrl ? (
           <img
@@ -78,7 +82,9 @@ const SchoolItem = ({ schoolData }: ISchoolItemProps) => {
             // objectFit={"cover"}
           />
         ) : (
-          <p>{t("home:noneOfImage")}</p>
+          <div className={"mt-4 flex justify-center"}>
+            <p>{t("home:noneOfImage")}</p>
+          </div>
         )}
       </div>
     </li>
