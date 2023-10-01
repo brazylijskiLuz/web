@@ -4,5 +4,7 @@
   "km": "km",
   "min": "min",
   "max": "max",
-  "adjustFontSize": "Dostosuj rozmiar czcionki"
+  "adjustFontSize": "Dostosuj rozmiar czcionki",
+  "enableContrast": "Włącz tryb kontrastu",
+  "disableContrast": "Wyłącz tryb kontrastu"
 }

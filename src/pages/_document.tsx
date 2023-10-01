@@ -1,13 +1,11 @@
-import { useA11yStore } from "@/stores/a11y.store";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
-  const fontSize = useA11yStore((state) => state.fontSize);
-
+  //TODO: change lang
   return (
     <Html lang="en">
       <Head />
-      <body style={{ fontSize: 40 }}>
+      <body>
         <Main />
         <NextScript />
       </body>

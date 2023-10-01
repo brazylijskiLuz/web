@@ -5,6 +5,7 @@ import { useT } from "@/utils/hooks/useTranslation";
 import AccessibilitySvg from "@/assets/svgs/Accessibiliy.svg";
 import AccessibilityModal from "@/features/common/AccessibilityModal";
 import { useOutsideClick } from "@/utils/hooks/useOutsideClick";
+import LanguageSvg from "@/assets/svgs/language.svg";
 
 interface ISearchInputsProps {
   onChangeInputs: (val: {
@@ -53,6 +54,14 @@ const SearchInputs = ({ onChangeInputs }: ISearchInputsProps) => {
             options={[`5 ${t("km")}`, `10 ${t("km")}`]}
             defaultValue={`5 ${t("km")}`}
             onSelect={(val) => setRadius(val.trim().split(t("km"))[0])}
+          />
+        </div>
+        <div className="ml-8 flex h-full  items-center border-l  border-l-primary pl-4">
+          <Select
+            className="!w-20 rounded-full border-2 border-gray  bg-white !font-semibold !text-black"
+            defaultValue="PL"
+            onSelect={() => null}
+            options={["PL", "EN"]}
           />
         </div>
         <div className="ml-8 flex h-full  items-center border-l  border-l-primary pl-4">

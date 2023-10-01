@@ -15,7 +15,7 @@ const Layout = ({ children }: ILayoutProps) => {
   const { asPath } = useRouter();
 
   const menuList = [
-    { name: t("scholList"), href: "/" },
+    { name: t("schoolList"), href: "/" },
     { name: t("contact"), href: "/contact" },
   ];
   console.log(asPath);

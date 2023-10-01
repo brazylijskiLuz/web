@@ -3,27 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-colors: 38 103 255;
+  --secondary-colors: 245 46 142;
+  --light-colors: 243 245 250;
+  --gray-colors: 188 188 188;
+  --darkGray-colors: 120 121 126;
+  --white-colors: 255 255 255;
+  --black-colors: 0 0 0;
+  --success-colors: 0 196 140;
+  --danger-colors: 255 61 113;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html[data-theme="contrast"] {
+  --primary-colors: 38 103 255;
+  --secondary-colors: 245 46 142;
+  --light-colors: 243 245 250;
+  --gray-colors: 188 188 188;
+  --darkGray-colors: 120 121 126;
+  --white-colors: 255 255 255;
+  --black-colors: 0 0 0;
+  --success-colors: 0 196 140;
+  --danger-colors: 255 61 113;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+html[data-theme="contrast"] {
+  --primary-colors: 38 103 255;
+  --secondary-colors: 245 46 142;
+  --light-colors: 255 255 255;
+  --gray-colors: 201 182 2;
+  --darkGray-colors: 201 182 2;
+  --white-colors: 0 0 0;
+  --black-colors: 255 255 255;
+  --success-colors: 0 196 140;
+  --danger-colors: 255 61 113;
 }
 
 html,
@@ -31,6 +43,12 @@ body {
   box-sizing: border-box;
   height: 100%;
   min-height: 100vh;
+}
+
+.leaflet-popup-pane,
+.leaflet-popup-content {
+  min-width: 300px !important;
+  max-width: 400px !important;
 }
 
 .leaflet-popup-tip {

@@ -80,7 +80,7 @@ export const Select = ({
   return (
     <div
       ref={selectRef}
-      className={select({ intent, border, outline, className })}
+      className={select({ className, intent, border, outline })}
       onClick={(e) => {
         setIsOpen((prev) => !prev);
         props.onClick && props.onClick(e);
