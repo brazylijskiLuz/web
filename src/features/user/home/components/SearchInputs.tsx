@@ -61,40 +61,44 @@ const SearchInputs = ({ onChangeInputs, errors }: ISearchInputsProps) => {
     <div
       ref={container}
       className={
-        "fixed top-24 z-50 flex h-24 w-full flex-col justify-between gap-2 border-b-2 border-light bg-white px-2 py-2 text-sm xs:h-16 xs:flex-row xs:items-center xs:gap-4 xs:px-4 xs:text-base sm:px-14"
+        "fixed top-24 z-50 flex h-40 w-full flex-col justify-between gap-2 border-b-2 border-light bg-white px-2 py-2 text-sm xs:h-28 sm:flex-row sm:items-center sm:gap-4 sm:px-4 sm:text-base md:h-16 md:px-14"
       }
     >
       <Input
         showSearchIcon
         onChange={(e) => setQuery(e.target.value)}
-        className={"xs:w-60 md:w-80"}
+        className={"sm:w-40 md:w-64"}
         placeholder={`${t("home:search")}...`}
       />
-      <div className={"flex w-full gap-4 xs:w-auto"}>
-        <CitySearch
-          customOnChange={(val) => setCity(val)}
-          // error={errors?.city?.message}
-        />
-        <Select
-          className={"!max-w-[5rem]"}
-          options={[`5 ${t("km")}`, `10 ${t("km")}`]}
-          defaultValue={`5 ${t("km")}`}
-          onSelect={(val) => setRadius(val.trim().split(t("km"))[0])}
-        />
-        <div className="ml-8 flex h-full  items-center border-l  border-l-primary pl-4">
+      <div className={"flex flex-col gap-4 xs:flex-row"}>
+        <div className={"flex w-full items-center gap-4 sm:w-auto"}>
+          <CitySearch
+            customOnChange={(val) => setCity(val)}
+            // error={errors?.city?.message}
+          />
           <Select
-            className="!w-20 rounded-full border-2 border-gray  bg-white !font-semibold !text-black"
-            defaultValue="PL"
-            onSelect={(state) =>
-              push(asPath, asPath, { locale: state.toLowerCase() })
-            }
-            options={["PL", "EN"]}
+            className={"!max-w-[5rem]"}
+            options={[`5 ${t("km")}`, `10 ${t("km")}`]}
+            defaultValue={`5 ${t("km")}`}
+            onSelect={(val) => setRadius(val.trim().split(t("km"))[0])}
           />
         </div>
-        <div className="ml-8 flex h-full  items-center border-l  border-l-primary pl-4">
-          <button onClick={() => setShowModal((state) => !state)}>
-            <AccessibilitySvg className="h-10 w-10 " />
-          </button>
+        <div className={"flex items-center"}>
+          <div className="flex h-full items-center justify-center pr-5 xs:border-l xs:border-l-primary xs:pl-5">
+            <Select
+              className="!w-20 rounded-full border-2 border-gray bg-white !font-semibold !text-black"
+              defaultValue="PL"
+              onSelect={(state) =>
+                push(asPath, asPath, { locale: state.toLowerCase() })
+              }
+              options={["PL", "EN"]}
+            />
+          </div>
+          <div className="flex h-full  items-center border-l  border-l-primary pl-4">
+            <button onClick={() => setShowModal((state) => !state)}>
+              <AccessibilitySvg className="h-10 w-10 " />
+            </button>
+          </div>
         </div>
       </div>
       {showModal && <AccessibilityModal />}

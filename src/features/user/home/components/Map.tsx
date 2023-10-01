@@ -47,8 +47,9 @@ const SchoolInfo = ({ id }: { id: string }) => {
         />
       </div>
       <div className="p-4">
-        <h1 className="text-xl font-bold">{data?.data.institutionName}</h1>
-        <p className="text-sm">{data?.data.description}</p>
+        <h1 className="text-xl font-bold">{data?.data?.institutionName}</h1>
+        {/*@ts-ignore TODO: check if work*/}
+        <p className="text-sm">{data?.data?.description}</p>
         <p className="text-sm">Adolf Hitler</p>
       </div>
     </div>

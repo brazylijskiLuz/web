@@ -78,7 +78,7 @@ const HomeScreen = () => {
           <FiltersContainer />
           <SchoolList />
         </div>
-        <div className="right-0 mt-4 h-40 w-full pb-7 md:fixed md:ml-7 md:mt-0 md:h-[calc(100vh-11.75rem)] md:w-[calc(60%-1.75rem)] md:pr-14">
+        <div className="right-0 mt-14 h-40 w-full pb-7 md:fixed md:ml-7 md:mt-0 md:h-[calc(100vh-11.75rem)] md:w-[calc(60%-1.75rem)] md:pr-14">
           <div className="h-full w-full overflow-hidden rounded-md">
             <Map />
           </div>
