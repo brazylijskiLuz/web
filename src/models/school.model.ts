@@ -1,6 +1,7 @@
 export interface School {
   id: string;
   institutionName: string;
+  description: string;
   creationDateOrEntryDate: string;
   address: {
     province: string;

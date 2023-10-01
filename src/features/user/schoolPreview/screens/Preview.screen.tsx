@@ -6,6 +6,13 @@ import DegreeCourses from "@/features/user/schoolPreview/components/DegreeCourse
 import Image from "next/image";
 import { useGetSchoolInfo } from "@/api/queries/school.query";
 import useDebounce from "@/utils/hooks/useDebouce";
+import dynamic from "next/dynamic";
+import { Button } from "@/features/common/Button";
+
+const Map = dynamic(() => import("@/features/user/home/components/Map"), {
+  ssr: false,
+});
+
 
 const school = {
   id: "1231412356-1231",
@@ -59,11 +66,12 @@ const school = {
 };
 
 export default function PreviewScreen() {
-  const { query, push } = useRouter();
+  const { query, push, back } = useRouter();
 
   const { t } = useT();
 
   const { data, error, isLoading } = useGetSchoolInfo(query.id as string);
+  console.log(data)
 
   useEffect(() => {
     if (!error) return;
@@ -74,8 +82,10 @@ export default function PreviewScreen() {
   const isCurrentLoading = useDebounce(isLoading, 1000);
 
   return (
-    <div className="mt-4 rounded-md bg-white px-14">
-      <h1 className="py-10 text-2xl font-bold">{`Nazwa uczelni`}</h1>
+    <div className="flex">
+      <div className="mt-4 rounded-md bg-white px-14 w-full md:w-[65%]">
+      <Button className="my-8" onClick={() => back()}>{t('goBack')}</Button>
+      <h1 className="py-4 text-2xl font-bold">{data?.data.institutionName}</h1>
       <hr className="border border-light" />
       <div className="my-8 flex flex-col gap-8 md:flex-row">
         <SchoolData isLoading={isCurrentLoading} data={school} />
@@ -97,7 +107,7 @@ export default function PreviewScreen() {
         ) : (
           <p>
             {
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper nunc a commodo molestie. Donec porta purus eget blandit aliquet. Duis ac dui quis enim imperdiet lobortis. Nulla venenatis iaculis sem, id feugiat dolor aliquam eget. Morbi bibendum maximus eros, non auctor metus congue vitae. Nunc ipsum nunc, ultrices ut pellentesque at, iaculis porttitor sem. Nullam ut risus urna. Pellentesque vel nisl eros. Maecenas sodales lorem ut nisl feugiat, ac interdum mauris faucibus."
+              data?.data.description
             }
           </p>
         )}
@@ -137,6 +147,7 @@ export default function PreviewScreen() {
             >
               <Image
                 src={"/images/school.png"}
+                className="rounded-md"
                 alt={"school"}
                 fill
                 objectFit={"cover"}
@@ -150,6 +161,7 @@ export default function PreviewScreen() {
               <Image
                 src={"/images/school.png"}
                 alt={"school"}
+                className="rounded-md"
                 fill
                 objectFit={"cover"}
               />
@@ -162,6 +174,7 @@ export default function PreviewScreen() {
               <Image
                 src={"/images/school.png"}
                 alt={"school"}
+                className="rounded-md"
                 fill
                 objectFit={"cover"}
               />
@@ -173,6 +186,7 @@ export default function PreviewScreen() {
             >
               <Image
                 src={"/images/school.png"}
+                className="rounded-md"
                 alt={"school"}
                 fill
                 objectFit={"cover"}
@@ -182,5 +196,10 @@ export default function PreviewScreen() {
         )}
       </div>
     </div>
+    <div className="right-[2%] mt-4 rounded-md overflow-hidden h-[82vh] w-[30%] fixed md:flex hidden">
+      <Map singleSchool={data?.data.id} x={data?.data.mapLocalization.x} y={data?.data.mapLocalization.y}/>
+    </div>
+    </div>
+ 
   );
 }
