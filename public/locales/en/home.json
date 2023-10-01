@@ -1,9 +1,9 @@
 {
   "filters": {
-    "studyLevelTitle": "Study Level",
-    "studyLevels": ["test 1", "test 2"],
-    "studyModeTitle": "Study Mode",
-    "studyModes": ["test 1", "test 2"],
+    "studyLevelTitle": "Study type",
+    "studyTypes": ["public", "private", "catholic", "scientific"],
+    "studyModeTitle": "Study mode",
+    "studyModes": ["stationary", "online"],
     "paymentsTitle": "Payments",
     "minimumPoints": "Minimum Points",
     "typeMinimumPoints": "Enter a number",
