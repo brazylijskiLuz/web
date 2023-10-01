@@ -165,7 +165,7 @@ export default function PreviewScreen() {
                 }
               >
                 <Image
-                  src={"/images/school.png"}
+                  src={"/images/school1.png"}
                   alt={"school"}
                   className="rounded-md"
                   fill
@@ -178,7 +178,7 @@ export default function PreviewScreen() {
                 }
               >
                 <Image
-                  src={"/images/school.png"}
+                  src={"/images/school2.png"}
                   alt={"school"}
                   className="rounded-md"
                   fill
@@ -191,7 +191,7 @@ export default function PreviewScreen() {
                 }
               >
                 <Image
-                  src={"/images/school.png"}
+                  src={"/images/school3.png"}
                   className="rounded-md"
                   alt={"school"}
                   fill

@@ -1,6 +1,6 @@
 {
   "filters": {
-    "studyLevelTitle": "Study type",
+    "studyTypesTitle": "Study type",
     "studyTypes": ["public", "private", "catholic", "scientific"],
     "studyModeTitle": "Study mode",
     "studyModes": ["stationary", "online"],
@@ -13,5 +13,9 @@
   "degreeCourses": "Degree Course",
   "search": "Search",
   "enterCity": "Enter a city",
-  "emptyCities": "No cities"
+  "emptyCities": "No cities",
+  "chooseOption": "Choose option",
+  "noneOfImage": "Empty image",
+  "schoolPhoto": "School image",
+  "emptySchools": "No results"
 }

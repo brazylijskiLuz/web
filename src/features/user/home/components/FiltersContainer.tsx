@@ -102,10 +102,10 @@ const FiltersContainer = ({ onChange }: IFiltersContainerProps) => {
           </Filter>
         </div>
       </div>
-      <Filter label={t("home:filters.degreeCourseTitle")}>
-        <DegreeCourse name="awdaw" />
-        <DegreeCourse name="awdaw" />
-      </Filter>
+      {/*<Filter label={t("home:filters.degreeCourseTitle")}>*/}
+      {/*  <DegreeCourse name="awdaw" />*/}
+      {/*  <DegreeCourse name="awdaw" />*/}
+      {/*</Filter>*/}
     </Container>
   );
 };

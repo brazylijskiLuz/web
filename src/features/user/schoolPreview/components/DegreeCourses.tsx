@@ -13,6 +13,7 @@ export default function DegreeCourses({
   data,
 }: IDegreeCoursesProps) {
   const { t } = useT();
+  console.log(data);
   return (
     <div className="w-full">
       <h2 className="mb-5 text-2xl font-bold text-black">
@@ -27,7 +28,7 @@ export default function DegreeCourses({
         </>
       ) : (
         <div className={"flex"}>
-          {data.map((course) => (
+          {data?.map((course) => (
             <div key={course.id} className={"flex"}>
               <Badge intent={"light"}>{course.name}</Badge>
             </div>
