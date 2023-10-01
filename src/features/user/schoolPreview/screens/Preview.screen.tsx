@@ -91,8 +91,11 @@ export default function PreviewScreen() {
         </h1>
         <hr className="border border-light" />
         <div className="my-8 flex flex-col gap-8 md:flex-row">
-          <SchoolData isLoading={isCurrentLoading} data={school} />
-          <DegreeCourses isLoading={isCurrentLoading} data={school} />
+          <SchoolData isLoading={isCurrentLoading} data={school as any} />
+          <DegreeCourses
+            isLoading={isCurrentLoading}
+            data={data?.data.degreeCourse}
+          />
         </div>
         <hr className="border border-light" />
         <div className="my-8 gap-8">

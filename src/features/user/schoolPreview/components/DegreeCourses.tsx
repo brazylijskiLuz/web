@@ -5,7 +5,7 @@ import { Badge } from "@/features/common/Badge";
 
 interface IDegreeCoursesProps {
   isLoading: boolean;
-  data?: School;
+  data: any[];
 }
 
 export default function DegreeCourses({
@@ -27,7 +27,7 @@ export default function DegreeCourses({
         </>
       ) : (
         <div className={"flex"}>
-          {data!.degreeCourse.map((course) => (
+          {data.map((course) => (
             <div key={course.id} className={"flex"}>
               <Badge intent={"light"}>{course.name}</Badge>
             </div>
