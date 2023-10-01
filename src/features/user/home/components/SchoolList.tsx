@@ -1,115 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SchoolItem from "@/features/user/home/components/SchoolItem";
 import { School } from "@/models/school.model";
+import { useT } from "@/utils/hooks/useTranslation";
 
-const data: School[] = [
-  {
-    id: "1231412356-1231",
-    institutionName: "Zespół szkół elektrycznych nr 1 w Krakowie",
-    creationDateOrEntryDate: "string",
-    address: {
-      province: "string",
-      city: "Kraków",
-      postCode: "30-123",
-      street: "Ratatata",
-      buildingNumber: "string",
-    },
-    mapLocalization: { x: "string", y: "string" },
-    REGON: "string",
-    NIP: "string",
-    KRS: "string",
-    website: "string",
-    institutionType: "string",
-    rate: "string",
-    rateCount: 4.0,
-    degreeCourse: [
-      {
-        id: "1245-32523426-74584513432r235-23",
-        name: "Programista",
-        description: "string",
-        rate: 10,
-        rateCount: 4,
-        universityId: "123523512",
-      },
-      {
-        id: "1245-32526-74586344513432r235-23",
-        name: "Informatyka",
-        description: "string",
-        rate: 10,
-        rateCount: 4,
-        universityId: "123523512",
-      },
-    ],
-    contact: {
-      RSPO: "string",
-      email: "string",
-      fax: "string",
-      phone: "string",
-    },
-    assessSubjects: [
-      {
-        id: "124436-756t34",
-        name: "Biologia",
-      },
-    ],
-  },
-  {
-    id: "123141-134233425-2357231",
-    institutionName: "ZSEL1",
-    creationDateOrEntryDate: "string",
-    address: {
-      province: "string",
-      city: "Kraków",
-      postCode: "30-123",
-      street: "Ratatata",
-      buildingNumber: "string",
-    },
-    mapLocalization: { x: "string", y: "string" },
-    REGON: "string",
-    NIP: "string",
-    KRS: "string",
-    website: "string",
-    institutionType: "string",
-    rate: "string",
-    rateCount: 4.0,
-    degreeCourse: [
-      {
-        id: "1245-32526-745845-23",
-        name: "informatyka stosowana",
-        description: "string",
-        rate: 10,
-        rateCount: 4,
-        universityId: "123523512",
-      },
-    ],
-    contact: {
-      RSPO: "string",
-      email: "string",
-      fax: "string",
-      phone: "string",
-    },
-    assessSubjects: [
-      {
-        id: "124436-756t3asfdsd234-52364",
-        name: "Matematyka",
-      },
-      {
-        id: "124436-756t3aasdsd234-52364",
-        name: "Polski",
-      },
-      {
-        id: "124436-756t3asd234-52364",
-        name: "Fizyka",
-      },
-    ],
-  },
-];
-const SchoolList = () => {
+interface ISchoolListProps {
+  schools?: School[] | null;
+  isLoading: boolean;
+}
+
+const SchoolList = ({ schools, isLoading }: ISchoolListProps) => {
+  const { t } = useT();
   return (
     <ul>
-      {data.map((schoolData) => (
+      {schools?.map((schoolData) => (
         <SchoolItem key={schoolData.id} schoolData={schoolData} />
       ))}
+      {isLoading
+        ? Array.from({ length: 10 }, (_, index) => (
+            <div
+              key={index}
+              className={"my-10 flex h-36 animate-pulse rounded-xl bg-white"}
+            ></div>
+          ))
+        : schools?.length === 0 && <p>{t("home:emptySchools")}</p>}
     </ul>
   );
 };

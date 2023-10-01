@@ -4,9 +4,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 const badge = cva(["rounded-md m-1 flex justify-center border-2 px-5"], {
   variants: {
     intent: {
-      primary: ["bg-primary bg-opacity-5 text-primary border-primary"],
-      secondary: ["bg-secondary bg-opacity-5 text-secondary border-secondary"],
-      light: ["bg-light text-darkGray border-light py-2"],
+      primary: ["bg-[#F4F7FF] text-primary border-primary"],
+      secondary: ["bg-[#FFF5F9] text-secondary border-secondary"],
+      light: ["bg-light bg-opacity-100 text-darkGray border-light py-2"],
     },
     weight: {
       light: ["font-light"],
@@ -15,18 +15,14 @@ const badge = cva(["rounded-md m-1 flex justify-center border-2 px-5"], {
       bold: ["font-bold"],
     },
     size: {
+      xSmall: ["text-xs py-1"],
       small: ["text-sm"],
       medium: ["text-base"],
     },
   },
-  compoundVariants: [
-    {
-      intent: "primary",
-    },
-  ],
   defaultVariants: {
     intent: "primary",
-    size: "medium",
+    size: "xSmall",
   },
 });
 
