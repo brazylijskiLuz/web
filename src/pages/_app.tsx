@@ -9,8 +9,7 @@ import { Inter } from "next/font/google";
 import { AuthProvider } from "@/features/admin/auth/AuthProvider";
 import { NextComponentType } from "next";
 import { Toaster } from "react-hot-toast";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useUserStore } from "@/stores/user.store";
 
 type CustomAppProps = AppProps & {
   Component: NextComponentType & {
@@ -29,7 +28,7 @@ function App({ Component, pageProps }: CustomAppProps) {
         position="top-center"
         reverseOrder={false}
         toastOptions={{
-          className: `font-bold p-6 flex flex-col gap-2 text-xl text-center break-all ${inter.className}`,
+          className: `font-bold p-6 flex flex-col gap-2 text-xl text-center break-all`,
         }}
       />
       <QueryClientProvider client={queryClient}>

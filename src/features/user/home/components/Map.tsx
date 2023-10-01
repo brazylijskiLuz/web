@@ -40,7 +40,7 @@ const SchoolInfo = ({ id }: { id: string }) => {
 
   const { push } = useRouter();
 
-  const {t} = useT()
+  const { t } = useT();
 
   console.log("uhhuahwuid", data);
 
@@ -53,14 +53,14 @@ const SchoolInfo = ({ id }: { id: string }) => {
         />
       </div>
       <div className="p-4">
-        <h1 className="text-xl font-bold">
+        <h1 className="text-xl font-bold text-black">
           {data?.data && data?.data.institutionName}
         </h1>
-        <h1 className="text-xl font-bold">{data?.data?.institutionName}</h1>
-        {/*@ts-ignore TODO: check if work*/}
         <p className="text-sm">{data?.data?.description}</p>
       </div>
-      <Button className='m-[10px]' onClick={() => push(id)}>{t('seeMore')}</Button>
+      <Button className="m-[10px]" onClick={() => push(id)}>
+        {t("seeMore")}
+      </Button>
     </div>
   );
 };
@@ -106,7 +106,15 @@ const CustomMarker = ({ position, id }: MarkerProps) => {
   );
 };
 
-const Map = ({singleSchool,x, y}: {singleSchool?: string, x?:string, y?: string}) => {
+const Map = ({
+  singleSchool,
+  x,
+  y,
+}: {
+  singleSchool?: string;
+  x?: string;
+  y?: string;
+}) => {
   const { data, isLoading, error } = useGetLocations();
 
   useEffect(() => {
@@ -127,18 +135,23 @@ const Map = ({singleSchool,x, y}: {singleSchool?: string, x?:string, y?: string}
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MarkerClusterGroup iconCreateFunction={createClusterIcon}>
-          {!singleSchool  && data?.data ?
-            data.data.map((location) => (
-              <CustomMarker
-                key={location.universityId}
-                id={location.universityId}
-                position={[+location.y, +location.x]}
-              />
-            )) : singleSchool && x && y && (<CustomMarker
-              key={singleSchool}
-              id={singleSchool}
-              position={[+y, +x]}
-            />)}
+          {!singleSchool && data?.data
+            ? data.data.map((location) => (
+                <CustomMarker
+                  key={location.universityId}
+                  id={location.universityId}
+                  position={[+location.y, +location.x]}
+                />
+              ))
+            : singleSchool &&
+              x &&
+              y && (
+                <CustomMarker
+                  key={singleSchool}
+                  id={singleSchool}
+                  position={[+y, +x]}
+                />
+              )}
         </MarkerClusterGroup>
 
         <ZoomControls />

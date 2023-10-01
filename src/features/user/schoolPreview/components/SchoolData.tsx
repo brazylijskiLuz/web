@@ -18,24 +18,26 @@ export default function SchoolData({ isLoading, data }: ISchoolDataProps) {
   } as any;
 
   return (
-      <div className="w-full">
-        <h2 className="mb-5 text-2xl font-bold">{t("preview:data")}</h2>
-        {isLoading ? (
-          <div className={"h-40 w-full animate-pulse rounded-md bg-light"} />
-        ) : (
-          Object.keys(universityData).map((key, i) => (
-            <div
-              key={key}
-              className={`flex items-center px-3 py-2 ${
-                i % 2 === 0 ? "bg-light" : "bg-white"
-              }`}
-            >
-              <p className={"w-1/2 text-sm"}>{t(`preview:${key}`)}</p>
-              <p className={"w-1/2 text-sm"}>{universityData[key]}</p>
-            </div>
-          ))
-        )}
-        <div></div>
-      </div>
+    <div className="w-full">
+      <h2 className="mb-5 text-2xl font-bold text-black">
+        {t("preview:data")}
+      </h2>
+      {isLoading ? (
+        <div className={"h-40 w-full animate-pulse rounded-md bg-light"} />
+      ) : (
+        Object.keys(universityData).map((key, i) => (
+          <div
+            key={key}
+            className={`flex items-center px-3 py-2 ${
+              i % 2 === 0 ? "bg-light" : "bg-white"
+            }`}
+          >
+            <p className={"w-1/2 text-sm "}>{t(`preview:${key}`)}</p>
+            <p className={"w-1/2 text-sm"}>{universityData[key]}</p>
+          </div>
+        ))
+      )}
+      <div></div>
+    </div>
   );
 }

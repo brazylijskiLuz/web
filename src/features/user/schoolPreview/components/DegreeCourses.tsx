@@ -15,7 +15,9 @@ export default function DegreeCourses({
   const { t } = useT();
   return (
     <div className="w-full">
-      <h2 className="mb-5 text-2xl font-bold">{t("preview:coursesDegree")}</h2>
+      <h2 className="mb-5 text-2xl font-bold text-black">
+        {t("preview:coursesDegree")}
+      </h2>
       {isLoading ? (
         <>
           <div

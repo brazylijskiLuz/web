@@ -33,21 +33,12 @@ interface ISearchInputsProps {
 const SearchInputs = ({ onChangeInputs, errors }: ISearchInputsProps) => {
   const { t } = useT();
 
-  const container = useRef(null);
-  const { asPath, push } = useRouter();
-
-  const [showModal, setShowModal] = useState(false);
-
   //undefined -> empty, null -> have val, but didn't chosen city from list, object -> chosen
   const [city, setCity] = useState<undefined | null | CityApi.IGetCityRes>(
     undefined,
   );
   const [query, setQuery] = useState("");
   const [radius, setRadius] = useState("5");
-
-  useOutsideClick(container, () => {
-    setShowModal(false);
-  });
 
   useEffect(() => {
     onChangeInputs({
@@ -59,9 +50,8 @@ const SearchInputs = ({ onChangeInputs, errors }: ISearchInputsProps) => {
 
   return (
     <div
-      ref={container}
       className={
-        "fixed top-24 z-50 flex h-40 w-full flex-col justify-between gap-2 border-b-2 border-light bg-white px-2 py-2 text-sm xs:h-28 sm:flex-row sm:items-center sm:gap-4 sm:px-4 sm:text-base md:h-16 md:px-14"
+        "h-35 fixed top-24 z-10 flex w-full flex-col justify-between gap-2 border-b-2 border-light bg-white px-2 py-2 text-sm xs:h-28 sm:flex-row sm:items-center sm:gap-4 sm:px-4 sm:text-base md:h-16 md:px-14"
       }
     >
       <Input
@@ -83,25 +73,7 @@ const SearchInputs = ({ onChangeInputs, errors }: ISearchInputsProps) => {
             onSelect={(val) => setRadius(val.trim().split(t("km"))[0])}
           />
         </div>
-        <div className={"flex items-center"}>
-          <div className="flex h-full items-center justify-center pr-5 xs:border-l xs:border-l-primary xs:pl-5">
-            <Select
-              className="!w-20 rounded-full border-2 border-gray bg-white !font-semibold !text-black"
-              defaultValue="PL"
-              onSelect={(state) =>
-                push(asPath, asPath, { locale: state.toLowerCase() })
-              }
-              options={["PL", "EN"]}
-            />
-          </div>
-          <div className="flex h-full  items-center border-l  border-l-primary pl-4">
-            <button onClick={() => setShowModal((state) => !state)}>
-              <AccessibilitySvg className="h-10 w-10 " />
-            </button>
-          </div>
-        </div>
       </div>
-      {showModal && <AccessibilityModal />}
     </div>
   );
 };

@@ -13,7 +13,6 @@ const Map = dynamic(() => import("@/features/user/home/components/Map"), {
   ssr: false,
 });
 
-
 const school = {
   id: "1231412356-1231",
   institutionName: "Zespół szkół elektrycznych nr 1 w Krakowie",
@@ -71,7 +70,7 @@ export default function PreviewScreen() {
   const { t } = useT();
 
   const { data, error, isLoading } = useGetSchoolInfo(query.id as string);
-  console.log(data)
+  console.log(data);
 
   useEffect(() => {
     if (!error) return;
@@ -83,123 +82,130 @@ export default function PreviewScreen() {
 
   return (
     <div className="flex">
-      <div className="mt-4 rounded-md bg-white px-14 w-full md:w-[65%]">
-      <Button className="my-8" onClick={() => back()}>{t('goBack')}</Button>
-      <h1 className="py-4 text-2xl font-bold">{data?.data.institutionName}</h1>
-      <hr className="border border-light" />
-      <div className="my-8 flex flex-col gap-8 md:flex-row">
-        <SchoolData isLoading={isCurrentLoading} data={school} />
-        <DegreeCourses isLoading={isCurrentLoading} data={school} />
+      <div className="mt-4 w-full rounded-md bg-white px-14 md:w-[65%]">
+        <Button className="my-8" onClick={() => back()}>
+          {t("goBack")}
+        </Button>
+        <h1 className="py-4 text-2xl font-bold text-black">
+          {data?.data.institutionName}
+        </h1>
+        <hr className="border border-light" />
+        <div className="my-8 flex flex-col gap-8 md:flex-row">
+          <SchoolData isLoading={isCurrentLoading} data={school} />
+          <DegreeCourses isLoading={isCurrentLoading} data={school} />
+        </div>
+        <hr className="border border-light" />
+        <div className="my-8 gap-8">
+          <h2 className="mb-5 text-2xl font-bold text-black">
+            {t("preview:description")}
+          </h2>
+          {isCurrentLoading ? (
+            <>
+              <div
+                className={"mb-2 h-4 w-full animate-pulse rounded-md bg-light"}
+              />
+              <div
+                className={"mb-2 h-4 w-full animate-pulse rounded-md bg-light"}
+              />
+              <div className={"h-4 w-1/3 animate-pulse rounded-md bg-light"} />
+            </>
+          ) : (
+            <p>{data?.data.description}</p>
+          )}
+        </div>
+        <hr className="border border-light" />
+        <div className="my-8 gap-8">
+          <h2 className="mb-5 text-2xl font-bold text-black">
+            {t("preview:chosenPhotos")}
+          </h2>
+          {isCurrentLoading ? (
+            <div className={"flex gap-5"}>
+              <div
+                className={
+                  "h-28 w-28 animate-pulse rounded-md bg-light md:h-52 md:w-52"
+                }
+              />
+              <div
+                className={
+                  "hidden h-28 w-28 animate-pulse rounded-md bg-light xs:inline-block md:h-52 md:w-52"
+                }
+              />
+              <div
+                className={
+                  "hidden h-28 w-28 animate-pulse rounded-md bg-light sm:inline-block md:h-52 md:w-52"
+                }
+              />
+              <div
+                className={
+                  "hidden h-28 w-28 animate-pulse rounded-md bg-light sm:inline-block md:hidden md:h-52 md:w-52 lg:inline-block"
+                }
+              />
+            </div>
+          ) : (
+            <div className={"flex gap-5"}>
+              <div
+                className={
+                  "relative h-28 w-28 rounded-md bg-light md:h-52 md:w-52"
+                }
+              >
+                <Image
+                  src={"/images/school.png"}
+                  className="rounded-md"
+                  alt={"school"}
+                  fill
+                  objectFit={"cover"}
+                />
+              </div>
+              <div
+                className={
+                  "relative hidden h-28 w-28 rounded-md bg-light xs:inline-block md:h-52 md:w-52"
+                }
+              >
+                <Image
+                  src={"/images/school.png"}
+                  alt={"school"}
+                  className="rounded-md"
+                  fill
+                  objectFit={"cover"}
+                />
+              </div>
+              <div
+                className={
+                  "relative hidden h-28 w-28 rounded-md bg-light sm:inline-block md:h-52 md:w-52"
+                }
+              >
+                <Image
+                  src={"/images/school.png"}
+                  alt={"school"}
+                  className="rounded-md"
+                  fill
+                  objectFit={"cover"}
+                />
+              </div>
+              <div
+                className={
+                  "relative hidden h-28 w-28 rounded-md bg-light sm:inline-block md:hidden md:h-52 md:w-52 lg:inline-block"
+                }
+              >
+                <Image
+                  src={"/images/school.png"}
+                  className="rounded-md"
+                  alt={"school"}
+                  fill
+                  objectFit={"cover"}
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      <hr className="border border-light" />
-      <div className="my-8 gap-8">
-        <h2 className="mb-5 text-2xl font-bold">{t("preview:description")}</h2>
-        {isCurrentLoading ? (
-          <>
-            <div
-              className={"mb-2 h-4 w-full animate-pulse rounded-md bg-light"}
-            />
-            <div
-              className={"mb-2 h-4 w-full animate-pulse rounded-md bg-light"}
-            />
-            <div className={"h-4 w-1/3 animate-pulse rounded-md bg-light"} />
-          </>
-        ) : (
-          <p>
-            {
-              data?.data.description
-            }
-          </p>
-        )}
-      </div>
-      <hr className="border border-light" />
-      <div className="my-8 gap-8">
-        <h2 className="mb-5 text-2xl font-bold">{t("preview:chosenPhotos")}</h2>
-        {isCurrentLoading ? (
-          <div className={"flex gap-5"}>
-            <div
-              className={
-                "h-28 w-28 animate-pulse rounded-md bg-light md:h-52 md:w-52"
-              }
-            />
-            <div
-              className={
-                "hidden h-28 w-28 animate-pulse rounded-md bg-light xs:inline-block md:h-52 md:w-52"
-              }
-            />
-            <div
-              className={
-                "hidden h-28 w-28 animate-pulse rounded-md bg-light sm:inline-block md:h-52 md:w-52"
-              }
-            />
-            <div
-              className={
-                "hidden h-28 w-28 animate-pulse rounded-md bg-light sm:inline-block md:hidden md:h-52 md:w-52 lg:inline-block"
-              }
-            />
-          </div>
-        ) : (
-          <div className={"flex gap-5"}>
-            <div
-              className={
-                "relative h-28 w-28 rounded-md bg-light md:h-52 md:w-52"
-              }
-            >
-              <Image
-                src={"/images/school.png"}
-                className="rounded-md"
-                alt={"school"}
-                fill
-                objectFit={"cover"}
-              />
-            </div>
-            <div
-              className={
-                "relative hidden h-28 w-28 rounded-md bg-light xs:inline-block md:h-52 md:w-52"
-              }
-            >
-              <Image
-                src={"/images/school.png"}
-                alt={"school"}
-                className="rounded-md"
-                fill
-                objectFit={"cover"}
-              />
-            </div>
-            <div
-              className={
-                "relative hidden h-28 w-28 rounded-md bg-light sm:inline-block md:h-52 md:w-52"
-              }
-            >
-              <Image
-                src={"/images/school.png"}
-                alt={"school"}
-                className="rounded-md"
-                fill
-                objectFit={"cover"}
-              />
-            </div>
-            <div
-              className={
-                "relative hidden h-28 w-28 rounded-md bg-light sm:inline-block md:hidden md:h-52 md:w-52 lg:inline-block"
-              }
-            >
-              <Image
-                src={"/images/school.png"}
-                className="rounded-md"
-                alt={"school"}
-                fill
-                objectFit={"cover"}
-              />
-            </div>
-          </div>
-        )}
+      <div className="fixed right-[2%] mt-4 hidden h-[82vh] w-[30%] overflow-hidden rounded-md md:flex">
+        <Map
+          singleSchool={data?.data.id}
+          x={data?.data.mapLocalization.x}
+          y={data?.data.mapLocalization.y}
+        />
       </div>
     </div>
-    <div className="right-[2%] mt-4 rounded-md overflow-hidden h-[82vh] w-[30%] fixed md:flex hidden">
-      <Map singleSchool={data?.data.id} x={data?.data.mapLocalization.x} y={data?.data.mapLocalization.y}/>
-    </div>
-    </div>
- 
   );
 }
