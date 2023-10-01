@@ -3,4 +3,6 @@ export const queryKeys = {
   locations: "locations",
   school: "school",
   cities: "cities",
+  school: "school",
+  login: "login",
 };
