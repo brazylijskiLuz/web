@@ -1,0 +1,17 @@
+{
+  "filters": {
+    "studyLevelTitle": "Study Level",
+    "studyLevels": ["test 1", "test 2"],
+    "studyModeTitle": "Study Mode",
+    "studyModes": ["test 1", "test 2"],
+    "paymentsTitle": "Payments",
+    "minimumPoints": "Minimum Points",
+    "typeMinimumPoints": "Enter a number",
+    "degreeCourseTitle": "Degree Courses"
+  },
+  "assessSubject": "Subjects Assessed in Admission",
+  "degreeCourse": "Degree Course",
+  "search": "Search",
+  "enterCity": "Enter a city",
+  "emptyCities": "No cities"
+}
