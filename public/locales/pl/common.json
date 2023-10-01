@@ -5,5 +5,6 @@
   "min": "min",
   "max": "max",
   "ul": "ul.",
-  "adjustFontSize": "Dostosuj rozmiar czcionki"
+  "adjustFontSize": "Dostosuj rozmiar czcionki",
+  "chooseCityFromList": "Wybierz miasto z listy"
 }

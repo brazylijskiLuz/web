@@ -12,5 +12,6 @@
   "assessSubject": "Przedmioty oceniane przy rekrutacji",
   "degreeCourse": "Kierunek",
   "search": "Wyszukaj",
-  "enterCity": "Wpisz miasto"
+  "enterCity": "Wpisz miasto",
+  "emptyCities": "Brak miast"
 }

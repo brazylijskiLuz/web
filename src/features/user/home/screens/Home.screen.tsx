@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchInputs from "@/features/user/home/components/SearchInputs";
 import { useT } from "@/utils/hooks/useTranslation";
 import { z } from "zod";
@@ -17,34 +17,59 @@ const HomeScreen = () => {
   const { t } = useT();
 
   const schema = z.object({
-    query: z.string().optional(),
-    radius: z.string().optional(),
-    city: z.string().optional(),
+    search: z.object({
+      query: z.string().optional(),
+      radius: z.string().optional(),
+      city: z
+        .object({
+          id: z.string(),
+          name: z.string(),
+          voivodeship: z.string(),
+          x: z.string(),
+          y: z.string(),
+        })
+        .optional()
+        .nullable()
+        .refine((val) => val !== null, t("chooseCityFromList")),
+    }),
   });
 
   type InputsValues = z.infer<typeof schema>;
 
   const {
     register,
-    handleSubmit,
     control,
-    formState: { errors, isValid },
+    trigger,
+    formState: { errors },
     watch,
   } = useForm<InputsValues>({
     defaultValues: {
-      query: "",
+      search: {
+        query: "",
+        city: undefined,
+        radius: "5",
+      },
     },
     resolver: zodResolver(schema),
   });
-  console.log(watch());
+
+  useEffect(() => {
+    console.log(watch());
+  }, [watch()]);
 
   return (
     <div className="flex h-full flex-col">
       <Controller
-        name={"query"}
+        name={"search"}
         control={control}
         render={({ field: { onChange } }) => (
-          <SearchInputs onChangeInputs={onChange} />
+          <SearchInputs
+            onChangeInputs={(val) => {
+              onChange(val);
+              if (!val.city) trigger("search.city");
+            }}
+            errors={errors?.search as any}
+          />
         )}
       />
 

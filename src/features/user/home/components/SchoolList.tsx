@@ -4,7 +4,7 @@ import { School } from "@/models/school.model";
 
 const data: School[] = [
   {
-    id: "123141-1231",
+    id: "1231412356-1231",
     institutionName: "Zespół szkół elektrycznych nr 1 w Krakowie",
     creationDateOrEntryDate: "string",
     address: {
@@ -24,7 +24,7 @@ const data: School[] = [
     rateCount: 4.0,
     degreeCourse: [
       {
-        id: "1245-32526-74584513432r235-23",
+        id: "1245-32523426-74584513432r235-23",
         name: "Programista",
         description: "string",
         rate: 10,
@@ -32,7 +32,7 @@ const data: School[] = [
         universityId: "123523512",
       },
       {
-        id: "1245-32526-74584513432r235-23",
+        id: "1245-32526-74586344513432r235-23",
         name: "Informatyka",
         description: "string",
         rate: 10,
@@ -54,7 +54,7 @@ const data: School[] = [
     ],
   },
   {
-    id: "123141-134235-2357231",
+    id: "123141-134233425-2357231",
     institutionName: "ZSEL1",
     creationDateOrEntryDate: "string",
     address: {
@@ -90,11 +90,11 @@ const data: School[] = [
     },
     assessSubjects: [
       {
-        id: "124436-756t3asd234-52364",
+        id: "124436-756t3asfdsd234-52364",
         name: "Matematyka",
       },
       {
-        id: "124436-756t3asd234-52364",
+        id: "124436-756t3aasdsd234-52364",
         name: "Polski",
       },
       {

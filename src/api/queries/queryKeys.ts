@@ -1,3 +1,3 @@
-const queryKeys = {
-
-}
+export const queryKeys = {
+  cities: "cities",
+};

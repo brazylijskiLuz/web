@@ -11,8 +11,8 @@ const input = cva(
     "px-3",
     "outline-none",
     "w-full",
-    "text-gray",
-    "placeholder:text-darkGray placeholder:font-light",
+    "text-darkGray",
+    "placeholder:text-gray placeholder:font-light",
   ],
   {
     variants: {
@@ -43,7 +43,7 @@ export interface InputProps
     VariantProps<typeof input> {
   handleChange?: (e: string) => void;
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue?: any;
   error?: string;
   showSearchIcon?: boolean;
   containerStyles?: string;

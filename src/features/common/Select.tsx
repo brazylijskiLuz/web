@@ -6,7 +6,7 @@ import { TriangleSvg } from "@/assets/svgs/Triangle.svg";
 
 const select = cva(
   [
-    "rounded-md min-w-[5rem] flex items-center py-2 px-3 relative outline-none w-full text-darkGray font-light cursor-pointer",
+    "rounded-md min-w-[5rem] flex items-center py-2 px-3 relative outline-none w-full text-darkGray placeholder:text-gray font-light cursor-pointer",
   ],
   {
     variants: {
@@ -101,7 +101,7 @@ export const Select = ({
             <li
               key={option}
               className={`cursor-pointer px-4 py-2 transition-all first:rounded-t-md last:rounded-b-md hover:bg-neutral-200 ${
-                option === selectedOption ? "bg-slate-200" : ""
+                option === selectedOption ? "bg-slate-200" : "bg-neutral-100"
               }`}
               onClick={() => handleOptionClick(option)}
             >
