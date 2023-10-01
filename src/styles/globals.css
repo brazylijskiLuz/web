@@ -26,21 +26,23 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-html, body {
+html,
+body {
   box-sizing: border-box;
   height: 100%;
+  min-height: 100vh;
 }
 
 .leaflet-popup-tip {
-    display: none;
+  display: none;
 }
 
 .leaflet-popup-content-wrapper {
-    position: absolute;
-      background: transparent !important;
-      box-shadow: none !important;
+  position: absolute;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 a.leaflet-popup-close-button {
-    display: none;
+  display: none;
 }

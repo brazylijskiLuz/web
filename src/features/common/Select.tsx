@@ -6,13 +6,14 @@ import { TriangleSvg } from "@/assets/svgs/Triangle.svg";
 
 const select = cva(
   [
-    "rounded-md flex items-center p-2 relative outline-none w-full cursor-pointer",
+    "rounded-md min-w-[5rem] flex items-center py-2 px-3 relative outline-none w-full text-darkGray placeholder:text-gray font-light cursor-pointer",
   ],
   {
     variants: {
       intent: {
         gray: ["bg-gray"],
         white: ["bg-white"],
+        light: ["bg-light"],
       },
       border: {
         primary: ["border-2", "border-primary"],
@@ -28,7 +29,7 @@ const select = cva(
         secondary: ["focus:border-2", "focus:border-secondary"],
       },
     },
-    defaultVariants: { intent: "gray", outline: "primary" },
+    defaultVariants: { intent: "light", outline: "primary" },
   },
 );
 export interface ISelectProps
@@ -86,7 +87,7 @@ export const Select = ({
       }}
       {...props}
     >
-      <p className={`font-medium`}>{selectedOption || defaultValue}</p>
+      <p>{selectedOption || defaultValue}</p>
       <div
         className={`${
           isOpen ? "rotate-180" : "rotate-0"
@@ -100,7 +101,7 @@ export const Select = ({
             <li
               key={option}
               className={`cursor-pointer px-4 py-2 transition-all first:rounded-t-md last:rounded-b-md hover:bg-neutral-200 ${
-                option === selectedOption ? "bg-slate-200" : ""
+                option === selectedOption ? "bg-slate-200" : "bg-neutral-100"
               }`}
               onClick={() => handleOptionClick(option)}
             >

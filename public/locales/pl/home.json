@@ -1,0 +1,17 @@
+{
+  "filters": {
+    "studyLevelTitle": "Poziom studiów",
+    "studyLevels": ["test 1", "test 2"],
+    "studyModeTitle": "Tryb studiów",
+    "studyModes": ["test 1", "test 2"],
+    "paymentsTitle": "Opłaty",
+    "minimumPoints": "Minimalna liczba punktów",
+    "typeMinimumPoints": "Wpisz liczbę",
+    "degreeCourseTitle": "Kierunki"
+  },
+  "assessSubject": "Przedmioty oceniane przy rekrutacji",
+  "degreeCourse": "Kierunek",
+  "search": "Wyszukaj",
+  "enterCity": "Wpisz miasto",
+  "emptyCities": "Brak miast"
+}

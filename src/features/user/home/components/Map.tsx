@@ -11,14 +11,14 @@ interface MarkerProps {
 }
 
 const universityIcon = icon({
-  iconUrl: "/UniversityIcon.png",
+  iconUrl: "/images/UniversityIcon.png",
   iconSize: [32, 32],
 });
 
 const createClusterIcon = (cluster: any) => {
   return divIcon({
     html: `<div class="">
-            <image src="/UniversityIcon.png" style="width: 32px; height: 32px;"/>
+            <image src="/images/UniversityIcon.png" style="width: 32px; height: 32px;"/>
             <p style="position: absolute; top: 0; right: 0; background: white; border-radius: 40%; padding-inline: 8px; transform: translate(10px, -10px)">
               ${cluster.getChildCount()}
             </p>
@@ -42,7 +42,7 @@ const SchoolInfo = () => {
     >
       <div className="h-[52px] w-full">
         <img
-          src="/UniversityIcon.png"
+          src="/images/images/UniversityIcon.png"
           className="absolute left-[10px] top-[10px] h-[32px] w-[32px]"
         />
       </div>
@@ -108,23 +108,22 @@ const Map = () => {
         zoom={6}
         scrollWheelZoom={true}
         zoomControl={false}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%", height: "100%", zIndex: 0 }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <MarkerClusterGroup iconCreateFunction={createClusterIcon}>
+          <CustomMarker position={[50.046286, 19.918216]} />
+          <CustomMarker position={[50.096286, 19.928616]} />
+          <CustomMarker position={[50.066286, 19.948616]} />
+        </MarkerClusterGroup>
 
         <ZoomControls />
       </MapContainer>
     </div>
   );
 };
-
-//        <MarkerClusterGroup iconCreateFunction={createClusterIcon}>
-//        <CustomMarker position={[50.046286, 19.918216]} />
-//      <CustomMarker position={[50.096286, 19.928616]} />
-//    <CustomMarker position={[50.066286, 19.948616]} />
-//</MarkerClusterGroup>
 
 export default Map;

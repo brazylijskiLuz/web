@@ -1,5 +1,10 @@
 {
   "schoolList": "Lista szkół",
   "contact": "Kontakt",
-  "km": "km"
+  "km": "km",
+  "min": "min",
+  "max": "max",
+  "ul": "ul.",
+  "adjustFontSize": "Dostosuj rozmiar czcionki",
+  "chooseCityFromList": "Wybierz miasto z listy"
 }

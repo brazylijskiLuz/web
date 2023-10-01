@@ -4,7 +4,7 @@ import { useAuthStore } from "@/stores/auth.store";
 import { useLanguageStore } from "@/stores/lang.store";
 
 export const api = axios.create({
-  baseURL: env.NEXT_PUBLIC_BASE_API_URL,
+  baseURL: env.NEXT_PUBLIC_BASE_API_URL + "api/",
 });
 
 api.interceptors.request.use((config) => {

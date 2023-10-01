@@ -1,3 +1,4 @@
+import { useA11yStore } from "@/stores/a11y.store";
 import type { Config } from "tailwindcss";
 
 const defaultTheme = require("tailwindcss/defaultTheme");
@@ -22,13 +23,15 @@ const config: Config = {
       colors: {
         primary: "#2667FF",
         secondary: "#F52E8E",
-        light: "#F9FAFE",
-        gray: "#F3F2F2",
-        darkGray: "#C7C7C7",
+        light: "#F3F5FA",
+        gray: "#BCBCBC",
+        darkGray: "#78797E",
         white: "#FFFFFF",
         black: "#000000",
         success: "#00C48C",
         danger: "#FF3D71",
+        yellow: "#EDDE57",
+        lightYellow: "#FDFCEE",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
