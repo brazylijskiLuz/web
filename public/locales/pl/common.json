@@ -6,5 +6,6 @@
   "max": "max",
   "ul": "ul.",
   "adjustFontSize": "Dostosuj rozmiar czcionki",
-  "chooseCityFromList": "Wybierz miasto z listy"
+  "enableContrast": "Włącz tryb kontrastu",
+  "disableContrast": "Wyłącz tryb kontrastu"
 }

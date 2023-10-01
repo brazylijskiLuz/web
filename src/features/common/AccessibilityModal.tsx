@@ -7,20 +7,29 @@ import { Button } from "./Button";
 import { use, useEffect, useState } from "react";
 import { useA11yStore } from "@/stores/a11y.store";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const AccessibilityModal = () => {
   const { t } = useT();
-
-  const { reload } = useRouter();
-
   const [fontSize, setFontSize] = useState(16);
+  const [contrast, setContrast] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.fontSize = `${fontSize}px`;
     document.body.style.fontSize = `${fontSize}px`;
   }, [fontSize]);
+
+  const makeContrast = () => {
+    if (document.documentElement.getAttribute("data-theme") === "contrast") {
+      document.documentElement.setAttribute("data-theme", "default");
+      setContrast(false);
+    } else {
+      document.documentElement.setAttribute("data-theme", "contrast");
+      setContrast(true);
+    }
+  };
 
   return (
     <Container
@@ -33,6 +42,9 @@ const AccessibilityModal = () => {
           <Button onClick={() => setFontSize(fontSize + 1)}>+</Button>
           <Button onClick={() => setFontSize(fontSize - 1)}>-</Button>
         </div>
+        <Button onClick={makeContrast} className="mt-4 w-full">
+          {!contrast ? t("enableContrast") : t("disableContrast")}
+        </Button>
       </div>
     </Container>
   );

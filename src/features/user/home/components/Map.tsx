@@ -5,9 +5,14 @@ import { motion } from "framer-motion";
 
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import { use, useEffect } from "react";
+import { useGetLocations } from "@/api/queries/map.query";
+import { ILocation } from "@/api/requests/map.req";
+import { useGetSchoolInfo } from "@/api/queries/school.query";
 
 interface MarkerProps {
   position: [number, number];
+  id: string;
 }
 
 const universityIcon = icon({
@@ -17,9 +22,9 @@ const universityIcon = icon({
 
 const createClusterIcon = (cluster: any) => {
   return divIcon({
-    html: `<div class="">
+    html: `<div class="width: 100%">
             <image src="/images/UniversityIcon.png" style="width: 32px; height: 32px;"/>
-            <p style="position: absolute; top: 0; right: 0; background: white; border-radius: 40%; padding-inline: 8px; transform: translate(10px, -10px)">
+            <p style="color: black; position: absolute; top: 0; right: 0; background: white; border-radius: 40%; padding-inline: 8px; transform: translate(10px, -10px)">
               ${cluster.getChildCount()}
             </p>
           </div>`,
@@ -28,18 +33,13 @@ const createClusterIcon = (cluster: any) => {
   });
 };
 
-const SchoolInfo = () => {
+const SchoolInfo = ({ id }: { id: string }) => {
+  const { data, isLoading, error } = useGetSchoolInfo(id);
+
+  console.log("uhhuahwuid", data);
+
   return (
-    <motion.div
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-      }}
-      className="flex translate-x-[-47px] translate-y-[-27px] flex-col rounded-lg bg-white "
-    >
+    <div className="flex translate-x-[-47px] translate-y-[-27px] flex-col rounded-lg bg-white ">
       <div className="h-[52px] w-full">
         <img
           src="/images/images/UniversityIcon.png"
@@ -47,15 +47,11 @@ const SchoolInfo = () => {
         />
       </div>
       <div className="p-4">
-        <h1 className="text-2xl font-bold">Jem KUPE</h1>
-        <p className="text-sm">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel varius
-          nisl. Aliquam quam lacus, porttitor nec nisl nec, dignissim ultricies
-          augue.
-        </p>
+        <h1 className="text-xl font-bold">{data?.data.institutionName}</h1>
+        <p className="text-sm">{data?.data.description}</p>
         <p className="text-sm">Adolf Hitler</p>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -82,7 +78,7 @@ const ZoomControls = () => {
   );
 };
 
-const CustomMarker = ({ position }: MarkerProps) => {
+const CustomMarker = ({ position, id }: MarkerProps) => {
   return (
     <Marker
       position={position}
@@ -94,13 +90,19 @@ const CustomMarker = ({ position }: MarkerProps) => {
       }}
     >
       <Popup className="z-0 bg-[transparent]">
-        <SchoolInfo />
+        <SchoolInfo id={id} />
       </Popup>
     </Marker>
   );
 };
 
 const Map = () => {
+  const { data, isLoading, error } = useGetLocations();
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div className="h-full w-full">
       <MapContainer
@@ -115,9 +117,14 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MarkerClusterGroup iconCreateFunction={createClusterIcon}>
-          <CustomMarker position={[50.046286, 19.918216]} />
-          <CustomMarker position={[50.096286, 19.928616]} />
-          <CustomMarker position={[50.066286, 19.948616]} />
+          {data?.data &&
+            data.data.map((location) => (
+              <CustomMarker
+                key={location.universityId}
+                id={location.universityId}
+                position={[+location.y, +location.x]}
+              />
+            ))}
         </MarkerClusterGroup>
 
         <ZoomControls />

@@ -2,7 +2,8 @@ import { PropsWithChildren, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AuthStorage } from "./auth-storage";
 import { useAuthStore } from "@/stores/auth.store";
-import { AuthApi } from "@/api/requests/auth.api";
+import { AuthApi } from "@/api/requests/auth.req";
+
 import { useUserStore } from "@/stores/user.store";
 
 interface AuthProviderProps extends PropsWithChildren {

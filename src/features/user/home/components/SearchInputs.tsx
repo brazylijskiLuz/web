@@ -11,9 +11,11 @@ import { useT } from "@/utils/hooks/useTranslation";
 import AccessibilitySvg from "@/assets/svgs/Accessibiliy.svg";
 import AccessibilityModal from "@/features/common/AccessibilityModal";
 import { useOutsideClick } from "@/utils/hooks/useOutsideClick";
+import LanguageSvg from "@/assets/svgs/language.svg";
 import { useGetCities } from "@/api/queries/city.query";
 import { CityApi } from "@/api/requests/city.req";
 import { SpinnerSvg } from "@/assets/svgs/Spinner.svg";
+import { useRouter } from "next/router";
 
 interface ISearchInputsProps {
   onChangeInputs: (val: {
@@ -32,6 +34,7 @@ const SearchInputs = ({ onChangeInputs, errors }: ISearchInputsProps) => {
   const { t } = useT();
 
   const container = useRef(null);
+  const { asPath, push } = useRouter();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -78,6 +81,21 @@ const SearchInputs = ({ onChangeInputs, errors }: ISearchInputsProps) => {
           defaultValue={`5 ${t("km")}`}
           onSelect={(val) => setRadius(val.trim().split(t("km"))[0])}
         />
+        <div className="ml-8 flex h-full  items-center border-l  border-l-primary pl-4">
+          <Select
+            className="!w-20 rounded-full border-2 border-gray  bg-white !font-semibold !text-black"
+            defaultValue="PL"
+            onSelect={(state) =>
+              push(asPath, asPath, { locale: state.toLowerCase() })
+            }
+            options={["PL", "EN"]}
+          />
+        </div>
+        <div className="ml-8 flex h-full  items-center border-l  border-l-primary pl-4">
+          <button onClick={() => setShowModal((state) => !state)}>
+            <AccessibilitySvg className="h-10 w-10 " />
+          </button>
+        </div>
       </div>
       {showModal && <AccessibilityModal />}
     </div>
