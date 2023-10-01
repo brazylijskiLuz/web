@@ -1,17 +1,20 @@
 {
   "filters": {
-    "studyLevelTitle": "Poziom studiów",
-    "studyLevels": ["test 1", "test 2"],
-    "studyModeTitle": "Tryb studiów",
-    "studyModes": ["test 1", "test 2"],
+    "studyTypesTitle": "Typ studiów",
+    "studyTypes": ["publiczne", "prywatne", "katolickie", "naukowe"],
+    "studyModeTitle": "Rodzaj studiów",
+    "studyModes": ["stacjonarne", "online"],
     "paymentsTitle": "Opłaty",
     "minimumPoints": "Minimalna liczba punktów",
     "typeMinimumPoints": "Wpisz liczbę",
     "degreeCourseTitle": "Kierunki"
   },
   "assessSubject": "Przedmioty oceniane przy rekrutacji",
-  "degreeCourse": "Kierunek",
+  "degreeCourses": "Kierunki",
   "search": "Wyszukaj",
   "enterCity": "Wpisz miasto",
-  "emptyCities": "Brak miast"
+  "emptyCities": "Brak miast",
+  "chooseOption": "Wybierz opcję",
+  "noneOfImage": "Brak zdjęcia",
+  "schoolPhoto": "Zdjęcie szkoły"
 }

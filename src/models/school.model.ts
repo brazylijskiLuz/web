@@ -17,6 +17,7 @@ export interface School {
   institutionType: string;
   rate: string;
   rateCount: number;
+  imageUrl: string;
   degreeCourse: {
     id: string;
     name: string;
@@ -37,4 +38,14 @@ export interface School {
     fax: string;
     phone: string;
   };
+}
+
+export interface IGetSchoolsReq {
+  query?: string;
+  page: string;
+  types?: [0 | 1 | 2 | 3];
+  minPrice?: string;
+  maxPrice?: string;
+  mode: 0 | 1 | 2;
+  city?: string;
 }

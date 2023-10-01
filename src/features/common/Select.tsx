@@ -6,7 +6,7 @@ import { TriangleSvg } from "@/assets/svgs/Triangle.svg";
 
 const select = cva(
   [
-    "rounded-md min-w-[5rem] flex items-center py-2 px-3 relative outline-none w-full text-darkGray placeholder:text-gray font-light cursor-pointer",
+    "rounded-md min-w-[5rem] flex items-center relative outline-none w-full text-darkGray placeholder:text-gray font-light",
   ],
   {
     variants: {
@@ -40,7 +40,7 @@ export interface ISelectProps
     VariantProps<typeof select> {
   options: string[];
   onSelect: (val: string) => void;
-  defaultValue: string;
+  defaultValue?: string;
   value?: string;
   error?: string;
 }
@@ -55,6 +55,7 @@ export const Select = ({
   defaultValue,
   value,
   error,
+  placeholder,
   ...props
 }: ISelectProps) => {
   const selectRef = useRef<HTMLDivElement | null>(null);
@@ -63,8 +64,8 @@ export const Select = ({
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setSelectedOption(value || defaultValue);
-    onSelect(value || defaultValue);
+    setSelectedOption(value || defaultValue || "");
+    onSelect(value || defaultValue || "");
     if (typeof value === "undefined") return;
     setIsOpen(false);
   }, [value, defaultValue]);
@@ -72,28 +73,36 @@ export const Select = ({
   useOutsideClick(selectRef, () => setIsOpen(false));
 
   const handleOptionClick = (option: string) => {
+    setIsOpen(false);
     setSelectedOption(option);
     onSelect(option);
-    setIsOpen(false);
   };
 
   return (
     <div
       ref={selectRef}
       className={select({ className, intent, border, outline })}
-      onClick={(e) => {
-        setIsOpen((prev) => !prev);
-        props.onClick && props.onClick(e);
-      }}
       {...props}
     >
-      <p>{selectedOption || defaultValue}</p>
       <div
-        className={`${
-          isOpen ? "rotate-180" : "rotate-0"
-        } absolute right-3 transition-all`}
+        className={"flex h-full w-full cursor-pointer items-center px-3 py-2"}
+        onClick={(e) => {
+          setIsOpen((prev) => !prev);
+          props.onClick && props.onClick(e);
+        }}
       >
-        <TriangleSvg />
+        {selectedOption || defaultValue ? (
+          <p>{selectedOption || defaultValue}</p>
+        ) : (
+          <p className={"text-gray"}>{placeholder}</p>
+        )}
+        <div
+          className={`${
+            isOpen ? "rotate-180" : "rotate-0"
+          } absolute right-3 transition-all`}
+        >
+          <TriangleSvg />
+        </div>
       </div>
       {isOpen && (
         <ul className="absolute left-0 top-11 z-30 w-full rounded-md border border-neutral-200 bg-gray shadow-md">

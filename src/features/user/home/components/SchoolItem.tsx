@@ -36,20 +36,29 @@ const SchoolItem = ({ schoolData }: ISchoolItemProps) => {
           <div className={"flex flex-wrap"}>
             {schoolData.assessSubjects &&
               schoolData.assessSubjects.map((subject) => (
-                <Badge key={subject.id} intent={"secondary"}>
+                <Badge key={subject.id} intent={"primary"}>
                   {subject.name}
                 </Badge>
               ))}
           </div>
         </div>
         <div className={"mt-2 flex flex-col"}>
-          <p className={"text-xs text-darkGray"}>{t("home:degreeCourse")}</p>
+          <p className={"text-xs text-darkGray"}>{t("home:degreeCourses")}</p>
           <div className={"flex flex-wrap"}>
             {schoolData.degreeCourse &&
-              schoolData.degreeCourse.map((course) => (
-                <Badge key={course.id} intent={"primary"}>
-                  {course.name}
-                </Badge>
+              schoolData.degreeCourse.map((course, index) => (
+                <>
+                  {index < 3 && (
+                    <Badge key={course.id} intent={"secondary"}>
+                      {course.name}
+                    </Badge>
+                  )}
+                  {index === 3 && (
+                    <Badge key={course.id} intent={"secondary"}>
+                      ...
+                    </Badge>
+                  )}
+                </>
               ))}
           </div>
         </div>
@@ -60,14 +69,17 @@ const SchoolItem = ({ schoolData }: ISchoolItemProps) => {
         }
         // className={"flex h-full w-[30%]"}
       >
-        {/*asd*/}
-        <Image
-          className={"lg:rounded-r-xl "}
-          src={"/images/school.png"}
-          alt={"school"}
-          fill
-          objectFit={"cover"}
-        />
+        {schoolData.imageUrl ? (
+          <img
+            className={"h-full object-cover lg:rounded-r-xl"}
+            src={schoolData.imageUrl}
+            alt={t("home:schoolPhoto")}
+            // fill
+            // objectFit={"cover"}
+          />
+        ) : (
+          <p>{t("home:noneOfImage")}</p>
+        )}
       </div>
     </li>
   );
